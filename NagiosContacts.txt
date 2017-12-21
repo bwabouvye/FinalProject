@@ -1,0 +1,59 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\csgray\c100000;}
+\paperw12240\paperh20160\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \cb3 \CocoaLigature0 ###############################################################################\
+# CONTACTS.CFG - SAMPLE CONTACT/CONTACTGROUP DEFINITIONS\
+#\
+#\
+# NOTES: This config file provides you with some example contact and contact\
+#        group definitions that you can reference in host and service\
+#        definitions.\
+#\
+#        You don't need to keep these definitions in a separate file from your\
+#        other object definitions.  This has been done just to make things\
+#        easier to understand.\
+#\
+###############################################################################\
+\
+\
+\
+###############################################################################\
+###############################################################################\
+#\
+# CONTACTS\
+#\
+###############################################################################\
+# Just one contact defined by default - the Nagios admin (that's you)\
+# This contact definition inherits a lot of default values from the 'generic-contact'\
+# template which is defined elsewhere.\
+\
+define contact\{\
+        contact_name                    nagiosadmin             ; Short name of user\
+        use                             generic-contact         ; Inherit default values from generic-contact template (define$\
+        alias                           Nagios Admin            ; Full name of user\
+\
+        email                           jvl5@njit.edu           ; <<***** CHANGE THIS TO YOUR EMAIL ADDRESS ******\
+        \}\
+\
+\
+###############################################################################\
+###############################################################################\
+#\
+# CONTACT GROUPS\
+#\
+###############################################################################\
+###############################################################################\
+\
+# We only have one contact in this simple configuration file, so there is\
+# no need to create more than one contact group.\
+\
+define contactgroup\{\
+        contactgroup_name       admins\
+        alias                   Nagios Administrators\
+        members                 nagiosadmin\
+        \}\
+}

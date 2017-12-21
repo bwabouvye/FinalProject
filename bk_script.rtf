@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPS-BoldMT;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Bold;
+}
+{\colortbl;\red255\green255\blue255;\red51\green187\blue200;\red52\green188\blue38;\red175\green173\blue36;
+\red82\green48\blue225;\red195\green55\blue32;}
+{\*\expandedcolortbl;;\csgenericrgb\c20000\c73333\c78431;\csgenericrgb\c20392\c73725\c14902;\csgenericrgb\c68627\c67843\c14118;
+\csgenericrgb\c32157\c18824\c88235;\csgenericrgb\c76471\c21569\c12549;}
+\paperw12240\paperh20160\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\tx916\tx1832\tx2748\tx3664\tx4580\tx5496\tx6412\tx7328\tx8244\tx9160\tx10076\tx10992\tx11908\tx12824\tx13740\tx14656\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\b\fs21 \cf0 \ul \ulc0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\b0\fs17 \cf2 \ulnone #!/bin/bash\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 database\cf3 =
+\f2\b \cf4 "IT610DB"
+\f1\b0 \
+\cf0 db_host\cf3 =
+\f2\b \cf4 "localhost"
+\f1\b0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 #db_port=
+\f2\b \cf4 "3306"
+\f1\b0 \cf2 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 db_user\cf3 =
+\f2\b \cf4 "root"
+\f1\b0 \cf0 \
+db_pass\cf3 =
+\f2\b \cf4 "XXXXX"
+\f1\b0 \
+\cf0 backup_dir\cf3 =
+\f2\b \cf4 "/home/backups/db/"
+\f1\b0 \
+\cf0 datetime\cf3 =$(\cf0 date +
+\f2\b \cf4 '%Y-%m-%dT%H:%M:%S'
+\f1\b0 \cf3 )\cf4 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 #backup_dir=
+\f2\b \cf4 "$\{backup_parent_dir\}/$\{datetime\}"
+\f1\b0 \
+\cf2 #backup_user=
+\f2\b \cf4 "root"
+\f1\b0 \cf2 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f2\b \cf5 mkdir
+\f1\b0 \cf0  - p 
+\f2\b \cf4 "$\{backup_dir\}"
+\f1\b0 \
+
+\f2\b \cf5 chmod
+\f1\b0 \cf0  700 
+\f2\b \cf4 "$\{backup_dir\}"
+\f1\b0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 # Get MySQL database\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 # Dump database into SQL file\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 mysqldump --user\cf3 =
+\f2\b \cf6 $db_user
+\f1\b0 \cf0  --password\cf3 =
+\f2\b \cf6 $db_pass
+\f1\b0 \cf0  --host\cf3 =
+\f2\b \cf6 $db_host
+\f1\b0 \cf0  
+\f2\b \cf6 $db_name
+\f1\b0 \cf0  \cf3 >\cf0  
+\f2\b \cf6 $backup_dir
+\f1\b0 \cf0 /
+\f2\b \cf6 $database
+\f1\b0 \cf0 -
+\f2\b \cf6 $datetime
+\f1\b0 \cf0 .sq\cf6 \
+\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f2\b \cf5 echo
+\f1\b0 \cf0  
+\f2\b \cf4 "backup successful created $mysqldump"\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\b0 \cf2 # Delete backup files older than 7 days\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \'a0\cf2  #\'a0 find $backup_dir/* -mtime +7 -exec rm\{\} \\;\
+\cf0 \
+find /home/backups/db -type f -name 
+\f2\b \cf4 '*.sql'
+\f1\b0 \cf0  -mmin\'a0 +2 -delete\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f2\b \cf5 echo
+\f1\b0 \cf0  
+\f2\b \cf4 "Removed backup files older than 2 minutes"
+\f1\b0 \
+}
